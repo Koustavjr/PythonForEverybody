@@ -1,0 +1,128 @@
+Week 3:
+
+lect1:
+
+import socket
+mysock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+mysock.connect((host,port))
+
+lect2:
+
+http://www.xyz.com/abc.html
+|              |       |
+Protocol     Host     Document
+
+HTTP request 
+import socket
+mysock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+mysock.connect((host,port))
+cmd="string".encode()
+mysock.send(cmd)
+while true:
+  data=mysock.recv(512)<-have to be number
+  if len(data)<1:
+	break
+  print(data.decode())
+mysock.close()
+
+
+Week4
+
+Unicode & Strings:
+
+ord("H")-> 72
+ord("\n")->10
+ord function tells us the simple ASCII value of characters
+UTF-8 recommended system for exchanging data between systems
+encode()-> converts strings to byte
+decode()->converts byte or unicode to ascii or string
+
+urllib
+
+import urllib.request,urllib.parse,urllib.error
+fhand=urllib.request.urlopen("any url")
+for line in fhand:
+  print(line.decode().strip())
+
+BeautifulSoup
+
+from bs4 import BeautifulSoup
+url=input("")
+html=urlib.request.urlopen().read()
+soup=BeautifulSoup(html,"html.parser")
+tags=soup('a')
+for tag in tags:
+	print(tag.get('href',None))
+
+import ssl
+ctx=ssl.create_default_context()
+ctx.check_hostname=False
+ctx.verify_mode=ssl.CERT_NONE
+
+
+Week5:
+XML
+
+It is used to share srtructured data
+             Attributes
+                 |
+                 v 
+<person gender="male"><--- start
+<name>abc</name>
+<phone>22347</phone>
+<email=123@/><--- self-closing
+</person><--- closing
+
+1.tage: begin and end of elements 
+2.attributes: keyword/value pair in open tag
+3.serialize/de-serialize: convert data of one programming language into common format that can be stored or transmitted between systems in language independent manener.
+
+XML SCHEMA
+
+XML contract is used for xml validation
+
+<xs:complexType name="person">
+<xs:sequence>
+<xs:element name="lastname" type="xs:string"/>
+<xs:element name="age" type="xs:integer"/>
+</xs:sequence>
+</xs:complexType>
+ 
+XML parsing
+
+import xml.etree.ElementTree as ET
+data=''' <person>
+<name>abc</name>
+<phone type="int1">+1 113446</phone>
+<email hide=yes/>
+</person> '''
+
+tree = ET.fromstring(data) #forms tree structure to parse data
+print('Name:',tree.find('name').text)
+print('Attr:' tree.find('email').get('hide'))
+
+Week 6:
+
+JSON: represents data as nested lists and dictionaries
+
+import json
+
+data='''{
+	name:"abc",
+	"phone":{
+		"type":"int1",
+		"number":"123456"
+		},
+		"email":{
+		"hide":"yes"
+			}
+
+	}'''
+
+dictionary---->info = json.load(data)
+print("name:",info["name"])
+
+
+API:
+
+if we click on api link we will get a json in webbrowser

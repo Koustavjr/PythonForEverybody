@@ -1,0 +1,109 @@
+Course4:
+
+Week 1:
+
+OOP Terminology
+
+A python program is made up of objects cooperating together.
+An Object is a bit of self-contained code and data.
+
+Class: a template
+method: a defined capability of a class
+field or attribute: a bit of data in class
+object: instance of a class
+
+Class:
+
+class partyAnimal:
+	x=0
+	def party(self):
+		self.x=self.x+1
+		print("so far",self.x)
+an=partyAnimal()<---object
+an.party()
+an.party()
+an.party()<---->partyAnimal.party(an)
+
+dir()---> tells us capabilities or methods of newly created class
+
+Constructors and destructors
+Code that runs when object is created is called constructor
+def_init_(x)<--constructor
+def_del_(x)<---destructor
+
+other way: a=partyAnimal()
+	   a=42
+
+class partyAnimal:
+	x=0
+	name=""
+	def_init_(self,nam):
+		self.name=nam
+		print(self.name)
+	def party(self):
+		self.x=self.x+1
+		print(self.x)
+
+Inheritance
+The ability to extend a class to create a new class
+
+class footballFan(partyAnimal)<--inhertance
+
+Week 2:
+
+Relational Databases
+
+RD model data by storing rows and columns in tables. The power of the rd lies in its ability to efficiently retrieve data from those tables.
+
+Databases- contain tables
+relation- contains tuples or attributes
+tuple or row- set of fields that generally represents an object like a music track
+attribute or columns- one of many possible elements of data corresponding to the object represented by the row
+
+
+SQLLITE:
+
+CREATE TABLE USERS(
+name VARCHAR(128),
+email VARCHAR(128)<--- size 
+)
+
+SQL insert
+INSERT INTO USERS (name,email) VALUES ("jkl","jkl@email")
+
+SQL delete
+
+DELETE FROM USERS WHERE email="abc@email"
+
+SQL UPDATE
+
+UPDATE USERS SET name="abc" where email="abc@email"
+
+Retriebing records:
+
+SELECT * FROM USERS
+|      | 
+|      |____all the column 
+coloumn
+
+Sorting with order by
+SELECT * FROM USERS ORDER BY email
+
+In python
+
+import sqlite3
+
+con = sqlite3.connect('emaildb.sqlite')
+cur=con.cursor()
+
+cur.execute()<--- for db operations
+conn.commit()<--- for writing data on disk
+
+Primary,    logic and foreign keys
+(arrow end)           (arrow start)
+  
+JOIN operation:
+
+it links across several tables as of a select operation
+
+select Album.title,Artist.name from Album join Artist on Album.artist_id=Artist.id
